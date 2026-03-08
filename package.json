@@ -1,0 +1,41 @@
+{
+  "name": "arithmetic-arena-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telegram Mini App PvP arithmetic game monorepo",
+  "packageManager": "pnpm@10.1.0",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @arena/shared --filter @arena/api --filter @arena/web dev",
+    "dev:web": "pnpm --filter @arena/web dev",
+    "dev:api": "pnpm --filter @arena/api start:dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "test:api": "pnpm --filter @arena/api test",
+    "test:web": "pnpm --filter @arena/web test",
+    "test:e2e": "pnpm --filter @arena/web test:e2e",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "@types/node": "^22.13.10",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "apps/**/*.{ts,tsx}": [
+      "pnpm --filter @arena/web lint",
+      "pnpm --filter @arena/api lint"
+    ]
+  }
+}
